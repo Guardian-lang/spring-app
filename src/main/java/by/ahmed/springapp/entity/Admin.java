@@ -5,12 +5,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
-public class Author {
+public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -18,6 +17,6 @@ public class Author {
     private Date birth_date;
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Article> articles;
+    @Enumerated(EnumType.STRING)
+    private Rules rules;
 }

@@ -5,20 +5,18 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
-public class Article {
+public class Comments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title, announce, full_text;
-    private Date date;
-    private Integer views;
     @ManyToOne(fetch = FetchType.LAZY)
-    private Author author;
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Comments> comments;
+    private User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Article article;
+    private Date date;
+    private String text;
 }

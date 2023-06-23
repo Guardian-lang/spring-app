@@ -14,7 +14,7 @@ public interface AuthorRepository extends CrudRepository<Author, Long> {
     @Query("select a from Author a " +
             "where a.first_name = :firstName " +
             "and a.last_name = :lastName")
-    Author findAuthorByFI(@Param("firstName") String firstName, @Param("lastName") String lastName);
+    Author findAuthorByFL(@Param("firstName") String firstName, @Param("lastName") String lastName);
 
     @Query("select au from Author au " +
             "left join Article ar " +

@@ -9,7 +9,7 @@ import lombok.Setter;
 @Embeddable
 @Getter
 @Setter
-public class Verification {
+public class AuthorVerification {
     @OneToOne(fetch = FetchType.LAZY)
     private Author author;
     private String email, password;

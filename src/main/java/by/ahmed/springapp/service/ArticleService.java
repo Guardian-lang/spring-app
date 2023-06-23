@@ -2,6 +2,7 @@ package by.ahmed.springapp.service;
 
 import by.ahmed.springapp.dto.ArticleCreateEditDto;
 import by.ahmed.springapp.dto.ArticleReadDto;
+import by.ahmed.springapp.mapper.ArticleDtoConverter;
 import by.ahmed.springapp.mapper.ArticleListMapper;
 import by.ahmed.springapp.mapper.ArticleMapper;
 import by.ahmed.springapp.mapper.ArticleUpdateMapper;
@@ -22,6 +23,7 @@ public class ArticleService {
     private final ArticleMapper articleMapper;
     private final ArticleListMapper articleListMapper;
     private final ArticleUpdateMapper articleUpdateMapper;
+    private final ArticleDtoConverter articleDtoConverter;
 
     public List<ArticleReadDto> findAll() {
         return articleListMapper.toDtoList(articleRepository.findAll());
@@ -34,6 +36,7 @@ public class ArticleService {
 
     public ArticleReadDto create(ArticleCreateEditDto articleCreateEditDto) {
         return Optional.of(articleCreateEditDto)
+                .map(articleDtoConverter::toReadDto)
                 .map(articleMapper::toArticle)
                 .map(articleRepository::save)
                 .map(articleMapper::toDto)
