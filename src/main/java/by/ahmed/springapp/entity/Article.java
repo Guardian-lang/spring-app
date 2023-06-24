@@ -3,6 +3,8 @@ package by.ahmed.springapp.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import java.util.Date;
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "Article")
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

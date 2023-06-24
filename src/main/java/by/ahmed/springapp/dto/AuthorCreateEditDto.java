@@ -1,12 +1,13 @@
 package by.ahmed.springapp.dto;
 
 import by.ahmed.springapp.entity.Gender;
-import lombok.Builder;
-import lombok.Value;
+import lombok.*;
 
 import java.util.Date;
 
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class AuthorCreateEditDto {
     String firstname;

@@ -1,12 +1,12 @@
 package by.ahmed.springapp.dto;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Value;
+import lombok.*;
 
 import java.util.Date;
 
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Getter
 public class ArticleReadDto {

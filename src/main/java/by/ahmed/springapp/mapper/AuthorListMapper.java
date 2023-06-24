@@ -6,9 +6,12 @@ import by.ahmed.springapp.entity.Author;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
-@Mapper(componentModel = "spring")
-public interface AuthorMapper {
-    Author toAuthor(AuthorCreateEditDto authorCreateEditDto);
-    AuthorReadDto toDto(Author author);
+@Mapper(componentModel = "spring", uses = AuthorMapper.class)
+public interface AuthorListMapper {
+
+    List<Author> toAuthor(List<AuthorCreateEditDto> dtoList);
+    List<AuthorReadDto> toDto(List<Author> authors);
 }

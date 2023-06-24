@@ -17,33 +17,33 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class ArticleService {
+public class ArticleService implements by.ahmed.springapp.service.Service<ArticleReadDto, ArticleCreateEditDto> {
 
     private final ArticleRepository articleRepository;
     private final ArticleMapper articleMapper;
     private final ArticleListMapper articleListMapper;
     private final ArticleUpdateMapper articleUpdateMapper;
-    private final ArticleDtoConverter articleDtoConverter;
 
     public List<ArticleReadDto> findAll() {
         return articleListMapper.toDtoList(articleRepository.findAll());
     }
 
+    @Override
     public Optional<ArticleReadDto> findById(Long id) {
         return articleRepository.findById(id)
                 .map(articleMapper::toDto);
     }
 
-    public ArticleReadDto create(ArticleCreateEditDto articleCreateEditDto) {
-        return Optional.of(articleCreateEditDto)
-                .map(articleDtoConverter::toReadDto)
-                .map(articleDtoConverter::toCreateEditDto)
+    @Override
+    public ArticleReadDto create(ArticleCreateEditDto createEditDto) {
+        return Optional.of(createEditDto)
                 .map(articleMapper::toArticle)
                 .map(articleRepository::save)
                 .map(articleMapper::toDto)
                 .orElseThrow();
     }
 
+    @Override
     public Optional<ArticleReadDto> update(Long id, ArticleCreateEditDto createEditDto) {
         return articleRepository.findById(id)
                 .map(entity -> articleUpdateMapper.map(createEditDto, entity))
@@ -51,6 +51,7 @@ public class ArticleService {
                 .map(articleMapper::toDto);
     }
 
+    @Override
     public boolean delete(Long id) {
         return articleRepository.findById(id)
                 .map(entity -> {

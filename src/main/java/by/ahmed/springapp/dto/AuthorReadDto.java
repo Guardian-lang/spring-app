@@ -1,13 +1,14 @@
 package by.ahmed.springapp.dto;
 
 import by.ahmed.springapp.entity.Article;
-import lombok.Builder;
-import lombok.Value;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
 
-@Value
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class AuthorReadDto {
     Long id;
