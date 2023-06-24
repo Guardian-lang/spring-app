@@ -12,7 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @IntegrationTesting
@@ -20,8 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ArticleServiceTest {
 
     private final ArticleService articleService;
-    private final ArticleListMapper articleListMapper;
-    private final ArticleDtoConverter dtoConverter;
     private static final Long ARTICLE_ID = 1L;
 
 //    @Test

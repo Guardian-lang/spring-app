@@ -1,9 +1,8 @@
 package by.ahmed.springapp.greeting.controller;
 
 import by.ahmed.springapp.dto.ArticleCreateEditDto;
-import by.ahmed.springapp.entity.Article;
-import by.ahmed.springapp.mapper.ArticleMapper;
-import by.ahmed.springapp.repository.ArticleRepository;
+import by.ahmed.springapp.dto.ArticleReadDto;
+import by.ahmed.springapp.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +16,11 @@ import java.util.Calendar;
 @RequiredArgsConstructor
 public class ArticleController {
 
-    private final ArticleRepository articleRepository;
-    private final ArticleMapper articleMapper;
+    private final ArticleService articleService;
 
     @GetMapping("/article")
     public String mainArticle(Model model) {
-        Iterable<Article> articles = articleRepository.findAll();
+        Iterable<ArticleReadDto> articles = articleService.findAll();
         model.addAttribute("articles", articles);
         return "article";
     }
@@ -32,7 +30,7 @@ public class ArticleController {
         return "add-article";
     }
 
-    @PostMapping("/article/add")
+    @PostMapping("/article/add/post")
     public String addArticlePost(@RequestParam(name = "title") String title,
                                  @RequestParam(name = "announce") String announce,
                                  @RequestParam(name = "fullText") String fullText,
@@ -43,8 +41,7 @@ public class ArticleController {
                 .fullText(fullText)
                 .date(Calendar.getInstance().getTime())
                 .build();
-        var result = articleMapper.toArticle(article);
-        articleRepository.save(result);
+        articleService.create(article);
         return "redirect:/article";
     }
 }

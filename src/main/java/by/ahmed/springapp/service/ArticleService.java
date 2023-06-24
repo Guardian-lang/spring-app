@@ -37,6 +37,7 @@ public class ArticleService {
     public ArticleReadDto create(ArticleCreateEditDto articleCreateEditDto) {
         return Optional.of(articleCreateEditDto)
                 .map(articleDtoConverter::toReadDto)
+                .map(articleDtoConverter::toCreateEditDto)
                 .map(articleMapper::toArticle)
                 .map(articleRepository::save)
                 .map(articleMapper::toDto)

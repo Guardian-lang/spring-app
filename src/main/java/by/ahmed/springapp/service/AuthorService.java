@@ -11,6 +11,4 @@ import org.springframework.transaction.annotation.Transactional;
 public class AuthorService {
 
     private final AuthorRepository authorRepository;
-
-    public
 }
