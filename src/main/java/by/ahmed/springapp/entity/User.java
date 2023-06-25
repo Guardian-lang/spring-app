@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -15,4 +17,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String ip;
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Comments> comments;
 }
