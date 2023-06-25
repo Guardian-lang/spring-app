@@ -2,6 +2,7 @@ package by.ahmed.springapp.service;
 
 import by.ahmed.springapp.dto.AuthorCreateEditDto;
 import by.ahmed.springapp.dto.AuthorReadDto;
+import by.ahmed.springapp.entity.Author;
 import by.ahmed.springapp.filter.AuthorFilter;
 import by.ahmed.springapp.mapper.AuthorListMapper;
 import by.ahmed.springapp.mapper.AuthorMapper;
@@ -10,10 +11,13 @@ import by.ahmed.springapp.mapper.AuthorUpdateMapper;
 import by.ahmed.springapp.repository.AuthorRepository;
 import by.ahmed.springapp.repository.QPredicates;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +34,7 @@ public class AuthorService implements by.ahmed.springapp.service.Service<AuthorR
     private final AuthorListMapper authorListMapper;
     private final AuthorUpdateMapper authorUpdateMapper;
     private final AuthorPageMapper authorPageMapper;
+    private final ImageService imageService;
 
     public Page<AuthorReadDto> findAll(AuthorFilter filter, Pageable pageable) {
         var predicate = QPredicates.builder()
@@ -39,6 +44,20 @@ public class AuthorService implements by.ahmed.springapp.service.Service<AuthorR
                 .build();
         return authorRepository.findAll(predicate, pageable)
                 .map(authorPageMapper::toDto);
+    }
+
+    @SneakyThrows
+    private void uploadImage(MultipartFile image) {
+        if(!image.isEmpty()) {
+            imageService.upload(image.getOriginalFilename(), image.getInputStream());
+        }
+    }
+
+    public Optional<byte[]> findAvatar(Long id) {
+        return authorRepository.findById(id)
+                .map(Author::getAvatar)
+                .filter(StringUtils::hasText)
+                .flatMap(imageService::get);
     }
 
     @Override
@@ -55,6 +74,7 @@ public class AuthorService implements by.ahmed.springapp.service.Service<AuthorR
         return authorMapper.toDto(authorRepository.findAuthorByArticle(title));
     }
 
+    @Transactional
     @Override
     public AuthorReadDto create(AuthorCreateEditDto authorCreateEditDto) {
         return Optional.of(authorCreateEditDto)
@@ -64,6 +84,7 @@ public class AuthorService implements by.ahmed.springapp.service.Service<AuthorR
                 .orElseThrow();
     }
 
+    @Transactional
     @Override
     public Optional<AuthorReadDto> update(Long id, AuthorCreateEditDto createEditDto) {
         return authorRepository.findById(id)
@@ -72,6 +93,7 @@ public class AuthorService implements by.ahmed.springapp.service.Service<AuthorR
                 .map(authorMapper::toDto);
     }
 
+    @Transactional
     @Override
     public boolean delete(Long id) {
         return authorRepository.findById(id)
