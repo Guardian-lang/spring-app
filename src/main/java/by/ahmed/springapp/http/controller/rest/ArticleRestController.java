@@ -1,4 +1,4 @@
-package by.ahmed.springapp.greeting.controller.rest;
+package by.ahmed.springapp.http.controller.rest;
 
 import by.ahmed.springapp.dto.ArticleCreateEditDto;
 import by.ahmed.springapp.dto.ArticleReadDto;
