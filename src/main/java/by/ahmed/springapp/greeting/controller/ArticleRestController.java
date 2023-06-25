@@ -2,36 +2,37 @@ package by.ahmed.springapp.greeting.controller;
 
 import by.ahmed.springapp.dto.ArticleCreateEditDto;
 import by.ahmed.springapp.dto.ArticleReadDto;
+import by.ahmed.springapp.entity.Article;
 import by.ahmed.springapp.service.ArticleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
+import org.springframework.data.domain.Page;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
 
-@Controller
+@RestController
+@RequestMapping("/article")
 @RequiredArgsConstructor
-public class ArticleController {
+public class ArticleRestController {
 
     private final ArticleService articleService;
 
-    @GetMapping("/article")
-    public String mainArticle(Model model) {
-        Iterable<ArticleReadDto> articles = articleService.findAll();
-        model.addAttribute("articles", articles);
-        return "article";
+    @GetMapping
+    public Page<Article> getAll(
+            @RequestParam("offset") Integer offset,
+            @RequestParam("limit") Integer limit
+    ) {
+        return articleService.getAll(offset, limit);
     }
 
-    @GetMapping("/article/add")
-    public String addArticle(Model model) {
-        return "add-article";
+    @GetMapping
+    public Iterable<ArticleReadDto> mainArticle() {
+        return articleService.findAll();
     }
 
-    @PostMapping("/article/add/post")
-    public String addArticlePost(@RequestParam(name = "title") String title,
+    @PostMapping("/add/post")
+    public ArticleReadDto addArticlePost(@RequestParam(name = "title") String title,
                                  @RequestParam(name = "announce") String announce,
                                  @RequestParam(name = "fullText") String fullText,
                                  Model model) {
@@ -41,7 +42,6 @@ public class ArticleController {
                 .fullText(fullText)
                 .date(Calendar.getInstance().getTime())
                 .build();
-        articleService.create(article);
-        return "redirect:/article";
+        return articleService.create(article);
     }
 }

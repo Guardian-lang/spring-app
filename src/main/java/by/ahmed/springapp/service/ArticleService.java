@@ -2,12 +2,15 @@ package by.ahmed.springapp.service;
 
 import by.ahmed.springapp.dto.ArticleCreateEditDto;
 import by.ahmed.springapp.dto.ArticleReadDto;
+import by.ahmed.springapp.entity.Article;
 import by.ahmed.springapp.mapper.ArticleDtoConverter;
 import by.ahmed.springapp.mapper.ArticleListMapper;
 import by.ahmed.springapp.mapper.ArticleMapper;
 import by.ahmed.springapp.mapper.ArticleUpdateMapper;
 import by.ahmed.springapp.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +29,10 @@ public class ArticleService implements by.ahmed.springapp.service.Service<Articl
 
     public List<ArticleReadDto> findAll() {
         return articleListMapper.toDtoList(articleRepository.findAll());
+    }
+
+    public Page<Article> getAll(Integer offset, Integer limit) {
+        return articleRepository.findAll(PageRequest.of(offset, limit));
     }
 
     @Override

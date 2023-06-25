@@ -1,5 +1,6 @@
 package by.ahmed.springapp.dto;
 
+import by.ahmed.springapp.entity.Authentication;
 import by.ahmed.springapp.entity.Gender;
 import lombok.*;
 
@@ -15,4 +16,5 @@ public class AuthorCreateEditDto {
     String jobTitle;
     Date birthDate;
     Gender gender;
+    Authentication authentication;
 }

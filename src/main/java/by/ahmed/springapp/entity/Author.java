@@ -19,6 +19,8 @@ public class Author {
     private Long id;
     private String first_name, last_name, job_title;
     private Date birth_date;
+    @Embedded
+    private Authentication authentication;
     @Enumerated(EnumType.STRING)
     private Gender gender;
     @OneToMany(fetch = FetchType.LAZY)
