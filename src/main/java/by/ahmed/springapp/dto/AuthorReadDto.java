@@ -13,10 +13,11 @@ import java.util.List;
 @Builder
 public class AuthorReadDto {
     Long id;
-    String firstname;
-    String lastname;
-    String jobTitle;
-    Date birthDate;
+    String first_name;
+    String last_name;
+    String job_title;
+    String avatar;
+    Date birth_date;
     String gender;
     Authentication authentication;
     List<Article> articles;

@@ -11,10 +11,11 @@ import java.util.Date;
 @NoArgsConstructor
 @Builder
 public class AuthorCreateEditDto {
-    String firstname;
-    String lastname;
-    String jobTitle;
-    Date birthDate;
+    String first_name;
+    String last_name;
+    String job_title;
+    String avatar;
+    Date birth_date;
     Gender gender;
     Authentication authentication;
 }

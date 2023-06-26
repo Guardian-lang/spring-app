@@ -43,11 +43,11 @@ public class RegistrationController {
     }
 
     private void redirectAtt(AuthorCreateEditDto createAuthorDto, RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("firstname", createAuthorDto.getFirstname());
-        redirectAttributes.addFlashAttribute("lastname", createAuthorDto.getLastname());
-        redirectAttributes.addFlashAttribute("birthDate", createAuthorDto.getBirthDate());
+        redirectAttributes.addFlashAttribute("firstname", createAuthorDto.getFirst_name());
+        redirectAttributes.addFlashAttribute("lastname", createAuthorDto.getLast_name());
+        redirectAttributes.addFlashAttribute("birthDate", createAuthorDto.getBirth_date());
         redirectAttributes.addFlashAttribute("gender", createAuthorDto.getGender());
-        redirectAttributes.addFlashAttribute("jobTitle", createAuthorDto.getJobTitle());
+        redirectAttributes.addFlashAttribute("jobTitle", createAuthorDto.getJob_title());
         redirectAttributes.addFlashAttribute("email", createAuthorDto.getAuthentication().getEmail());
         redirectAttributes.addFlashAttribute("password", createAuthorDto.getAuthentication().getPassword());
     }

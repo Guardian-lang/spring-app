@@ -18,9 +18,9 @@ public class FilterAuthorRepositoryImpl implements FilterAuthorRepository{
     @Override
     public List<Author> findAllByFilter(AuthorFilter filter) {
         var predicate = QPredicates.builder()
-                .add(filter.firstname(), author.first_name::containsIgnoreCase)
-                .add(filter.lastname(), author.last_name::containsIgnoreCase)
-                .add(filter.birthDate(), author.birth_date::before)
+                .add(filter.getFirst_name(), author.first_name::containsIgnoreCase)
+                .add(filter.getLast_name(), author.last_name::containsIgnoreCase)
+                .add(filter.getBirth_date(), author.birth_date::before)
                 .build();
 
         return new JPAQuery<Author>(entityManager)

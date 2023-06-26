@@ -3,19 +3,14 @@ package by.ahmed.springapp.service;
 import by.ahmed.springapp.dto.AuthorCreateEditDto;
 import by.ahmed.springapp.dto.AuthorReadDto;
 import by.ahmed.springapp.entity.Author;
-import by.ahmed.springapp.filter.AuthorFilter;
 import by.ahmed.springapp.mapper.AuthorListMapper;
 import by.ahmed.springapp.mapper.AuthorMapper;
-import by.ahmed.springapp.mapper.AuthorPageMapper;
 import by.ahmed.springapp.mapper.AuthorUpdateMapper;
 import by.ahmed.springapp.repository.AuthorRepository;
-import by.ahmed.springapp.repository.QPredicates;
 import by.ahmed.springapp.validator.LoginAuthorValidator;
 import by.ahmed.springapp.validator.ValidationException;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -23,8 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
-
-import static by.ahmed.springapp.entity.QAuthor.author;
 
 @Service
 @RequiredArgsConstructor
@@ -35,7 +28,6 @@ public class AuthorService implements by.ahmed.springapp.service.Service<AuthorR
     private final AuthorMapper authorMapper;
     private final AuthorListMapper authorListMapper;
     private final AuthorUpdateMapper authorUpdateMapper;
-    private final AuthorPageMapper authorPageMapper;
     private final ImageService imageService;
     private final LoginAuthorValidator loginAuthorValidator;
 
