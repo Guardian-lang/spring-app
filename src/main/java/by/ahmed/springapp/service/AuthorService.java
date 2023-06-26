@@ -45,15 +45,9 @@ public class AuthorService implements by.ahmed.springapp.service.Service<AuthorR
         return userDto;
     }
 
-//    public Page<AuthorReadDto> findAll(AuthorFilter filter, Pageable pageable) {
-//        var predicate = QPredicates.builder()
-//                .add(filter.firstname(), author.first_name::containsIgnoreCase)
-//                .add(filter.lastname(), author.last_name::containsIgnoreCase)
-//                .add(filter.birthDate(), author.birth_date::before)
-//                .build();
-//        return authorRepository.findAll(predicate, pageable)
-//                .map(authorPageMapper::toDto);
-//    }
+    public List<AuthorReadDto> findAll() {
+        return authorListMapper.toDto(authorRepository.findAll());
+    }
 
     @SneakyThrows
     private void uploadImage(MultipartFile image) {
