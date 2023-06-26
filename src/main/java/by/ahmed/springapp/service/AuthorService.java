@@ -10,6 +10,8 @@ import by.ahmed.springapp.mapper.AuthorPageMapper;
 import by.ahmed.springapp.mapper.AuthorUpdateMapper;
 import by.ahmed.springapp.repository.AuthorRepository;
 import by.ahmed.springapp.repository.QPredicates;
+import by.ahmed.springapp.validator.LoginAuthorValidator;
+import by.ahmed.springapp.validator.ValidationException;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.data.domain.Page;
@@ -35,16 +37,31 @@ public class AuthorService implements by.ahmed.springapp.service.Service<AuthorR
     private final AuthorUpdateMapper authorUpdateMapper;
     private final AuthorPageMapper authorPageMapper;
     private final ImageService imageService;
+    private final LoginAuthorValidator loginAuthorValidator;
 
-    public Page<AuthorReadDto> findAll(AuthorFilter filter, Pageable pageable) {
-        var predicate = QPredicates.builder()
-                .add(filter.firstname(), author.first_name::containsIgnoreCase)
-                .add(filter.lastname(), author.last_name::containsIgnoreCase)
-                .add(filter.birthDate(), author.birth_date::before)
-                .build();
-        return authorRepository.findAll(predicate, pageable)
-                .map(authorPageMapper::toDto);
+    public Optional<AuthorReadDto> login(String login, String password) {
+        Optional<AuthorReadDto> userDto = authorRepository.findAll()
+                .stream()
+                .filter(it -> it.getAuthentication().getEmail()
+                        .equals(login)
+                        && it.getAuthentication().getPassword().equals(password))
+                .map(authorMapper::toDto).findFirst();
+        var validationResult = loginAuthorValidator.isValid(userDto);
+        if (!validationResult.isValid()) {
+            throw new ValidationException(validationResult.getErrors());
+        }
+        return userDto;
     }
+
+//    public Page<AuthorReadDto> findAll(AuthorFilter filter, Pageable pageable) {
+//        var predicate = QPredicates.builder()
+//                .add(filter.firstname(), author.first_name::containsIgnoreCase)
+//                .add(filter.lastname(), author.last_name::containsIgnoreCase)
+//                .add(filter.birthDate(), author.birth_date::before)
+//                .build();
+//        return authorRepository.findAll(predicate, pageable)
+//                .map(authorPageMapper::toDto);
+//    }
 
     @SneakyThrows
     private void uploadImage(MultipartFile image) {

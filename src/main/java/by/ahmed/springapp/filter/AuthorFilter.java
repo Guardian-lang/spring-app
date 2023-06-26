@@ -1,8 +1,14 @@
 package by.ahmed.springapp.filter;
 
+import by.ahmed.springapp.entity.Authentication;
+import lombok.Value;
+
 import java.util.Date;
 
-public record AuthorFilter(String firstname,
-                           String lastname,
-                           Date birthDate) {
-        }
+@Value
+public class AuthorFilter {
+        String firstname;
+        String lastname;
+        Date birthDate;
+        Authentication authentication;
+}
