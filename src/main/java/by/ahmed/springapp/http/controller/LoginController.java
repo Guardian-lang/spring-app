@@ -22,14 +22,14 @@ import static by.ahmed.springapp.util.ModelHelper.addAttributes;
 @Slf4j
 @RequiredArgsConstructor
 @SessionAttributes({"authorDto", "errors"})
-public class LoginRegistrationController {
+public class LoginController {
 
     private final AuthorService authorService;
 
-    @GetMapping("/login")
-    public String loginPage() {
-        return "/login";
-    }
+//    @GetMapping("/login")
+//    public String loginPage() {
+//        return "/login";
+//    }
 
     @PostMapping("/login")
     public String validate(Model model, String email,
@@ -47,6 +47,7 @@ public class LoginRegistrationController {
 
     @GetMapping("login/fail")
     public String loginFail() {
+        log.info("Wrong enter!");
         return "redirect:/login";
     }
 
@@ -54,6 +55,7 @@ public class LoginRegistrationController {
     @SneakyThrows
     private String onLoginSuccess(Model model,
                                   AuthorReadDto author) {
+        log.info("Author logged: {}", author);
         addAttributes(model, Map.of("authorDto", author));
         return "redirect:/users/menu";
     }
