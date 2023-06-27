@@ -2,6 +2,7 @@ package by.ahmed.springapp.service;
 
 import by.ahmed.springapp.dto.AuthorCreateEditDto;
 import by.ahmed.springapp.dto.AuthorReadDto;
+import by.ahmed.springapp.entity.Article;
 import by.ahmed.springapp.entity.Author;
 import by.ahmed.springapp.mapper.AuthorListMapper;
 import by.ahmed.springapp.mapper.AuthorMapper;
@@ -73,8 +74,8 @@ public class AuthorService implements by.ahmed.springapp.service.Service<AuthorR
         return authorListMapper.toDto(authorRepository.findAuthorsByFL(firstname, lastname));
     }
 
-    public AuthorReadDto findAuthorByArticle(String title) {
-        return authorMapper.toDto(authorRepository.findAuthorByArticle(title));
+    public List<Article> findArticlesOfAuthorByEmail(String email) {
+        return authorRepository.findArticlesOfAuthorByEmail(email);
     }
 
     @Transactional

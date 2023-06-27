@@ -1,5 +1,6 @@
 package by.ahmed.springapp.repository;
 
+import by.ahmed.springapp.entity.Article;
 import by.ahmed.springapp.entity.Author;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,8 +19,7 @@ public interface AuthorRepository extends JpaRepository<Author, Long>,
             "and a.last_name = :lastName")
     List<Author> findAuthorsByFL(@Param("firstName") String firstName, @Param("lastName") String lastName);
 
-    @Query("select au from Author au " +
-            "left join Article ar " +
-            "where ar.title = :title")
-    Author findAuthorByArticle(@Param("title") String title);
+    @Query("select au.articles from Author au " +
+            "where au.authentication.email = :email")
+    List<Article> findArticlesOfAuthorByEmail(@Param("email") String email);
 }
