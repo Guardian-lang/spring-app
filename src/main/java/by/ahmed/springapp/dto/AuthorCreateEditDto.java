@@ -2,6 +2,8 @@ package by.ahmed.springapp.dto;
 
 import by.ahmed.springapp.entity.Authentication;
 import by.ahmed.springapp.entity.Gender;
+import by.ahmed.springapp.validator.annotation.Adult;
+import by.ahmed.springapp.validator.annotation.AuthorInfo;
 import lombok.*;
 
 import java.util.Date;
@@ -10,6 +12,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@AuthorInfo
+@Adult
 public class AuthorCreateEditDto {
     String first_name;
     String last_name;

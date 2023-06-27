@@ -1,6 +1,6 @@
 package by.ahmed.springapp.entity;
 
-import by.ahmed.springapp.validator.annotation.Password;
+import by.ahmed.springapp.validator.annotation.UserPassword;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToOne;
@@ -13,11 +13,11 @@ import lombok.experimental.FieldNameConstants;
 @Getter
 @Setter
 @FieldNameConstants
-public class Authentication {
+public class UserAuthentication {
     @OneToOne(fetch = FetchType.LAZY)
-    private Author author;
+    private User user;
     @Email
     private String email;
-    @Password
+    @UserPassword
     private String password;
 }

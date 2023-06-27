@@ -16,7 +16,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String ip;
+    private String username;
+    @Embedded
+    private UserAuthentication authentication;
     @OneToMany(fetch = FetchType.LAZY)
     private List<Comments> comments;
 }
