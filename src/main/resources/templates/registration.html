@@ -20,7 +20,7 @@
 
 
     <meta charset="utf-8">
-    <title>Войти</title>
+    <title>Bootstrap Login Form - free examples, templates &amp; tutorial</title>
 
     <meta name="description" content="Responsive login form built with Bootstrap 5. Collection of examples for signup forms, full page login templates, login modals &amp; many other sign in designs.">
     <meta name="image" content="https://mdbcdn.b-cdn.net/docs/standard/extended/login/assets/featured.jpg">
@@ -50,83 +50,276 @@
     <link rel="shortcut icon" href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/favicon.ico">
 
     <link rel="canonical" href="https://mdbootstrap.com/docs/standard/extended/login/">
-<body>
-<section class="w-100 px-4 py-5 gradient-custom" style="border-radius: .5rem .5rem 0 0;">
+    <script async="" src="https://www.clarity.ms/s/0.7.8/clarity.js"></script><script async="" src="https://www.clarity.ms/tag/f1su1ssihh"></script><script src="https://connect.facebook.net/signals/config/289867067833087?v=2.9.109&amp;r=stable" async=""></script><script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-E9PS2EVWYS&amp;l=dataLayer&amp;cx=c"></script><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="//www.googletagmanager.com/gtm.js?id=GTM-W7MBMN"></script><script>
+    window.dataLayer = window.dataLayer || [];
+</script>
+
+
+    <script data-cfasync="false">
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            '//www.googletagmanager.com/gtm.'+'js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-W7MBMN');
+    </script>
+
+
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+                "@type": "ListItem",
+                "position": 1,
+                "name": "MDBootstrap",
+                "item": "https://mdbootstrap.com/",
+                "image": "https://mdbcdn.b-cdn.net/img/Marketing/mdb-press-pack/mdb-main.webp"
+            }, {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Standard",
+                "item": "https://mdbootstrap.com/docs/standard/",
+                "image": "https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/content/en/_mdb5/standard/about/assets/mdb5-about.webp"
+            }, {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Login form",
+                "item": "https://mdbootstrap.com/docs/standard/extended/login/",
+                "image": "https://mdbcdn.b-cdn.net/docs/standard/extended/login/assets/featured.jpg"
+            }]
+        }
+    </script>
+
     <style>
-        .gradient-custom {
-            /* fallback for old browsers */
-            background: #6a11cb;
+        #navbarNotification::after {
+            content: none !important;
+        }
 
-            /* Chrome 10-25, Safari 5.1-6 */
-            background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
 
-            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-            background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
+        #main-navbar .badge {
+            position: absolute;
+            font-size: .6rem;
+            margin-top: -.1rem;
+            margin-left: -.5rem;
+            padding: .2em .45em;
+        }
+
+
+        #main-navbar .nav-link {
+            color: rgba(0, 0, 0, .55) !important;
+            font-size: 1rem !important;
+            font-weight: 400;
+        }
+
+        #main-navbar .nav-link :hover {
+            color: rgb(76, 76, 76);
+        }
+
+
+
+        [aria-labelledby=new-mdb-technologies-dropdown] li {
+            background-color: rgb(255, 255, 255) !important;
+        }
+
+        [aria-labelledby=new-mdb-technologies-dropdown] li :hover {
+            background-color: #EEEEEE !important;
+            box-shadow: none !important;
+        }
+
+        [aria-labelledby=userDropdown] a {
+            background-color: rgb(255, 255, 255) !important;
+            box-shadow: none !important;
+        }
+
+        [aria-labelledby=userDropdown] a:hover {
+            background-color: #EEEEEE !important;
+        }
+
+        #navbarNotificationContent a {
+            background-color: rgb(255, 255, 255) !important;
+            box-shadow: none !important;
+        }
+
+        #navbarNotificationContent a:hover {
+            background-color: #EEEEEE !important;
+        }
+
+        .dropdown-item-pseudo-focus {
+            background-color: rgba(0, 0, 0, 0.05) !important;
+            box-shadow: none !important;
         }
     </style>
-    <div class="row d-flex justify-content-center">
-        <div class="col-12 col-md-8 col-lg-6 col-xl-6">
-            <div class="card bg-dark text-white" style="border-radius: 1rem;">
-                <div class="card-body p-5 text-center">
+    <style>
+        .docs-pills {
+            border-radius: 0.5rem;
+        }
 
-                    <div class="mb-md-5 mt-md-4 pb-5">
+        .docs-pills pre[class*="language-"] {
+            border-bottom-right-radius: 0.5rem;
+            border-bottom-left-radius: 0.5rem;
+        }
 
-                        <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
-                        <p class="text-white-50 mb-5">Please enter your data!</p>
+        .docs-pills .btn-copy-code,
+        .docs-tab-content .export-to-snippet {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            box-shadow: none !important;
+            color: #616161 !important;
+            background-color: transparent !important;
+            padding: 6px 15px !important;
+        }
+    </style>
+    <style>
+        @media (max-width: 576px) {
+            [id^=dpl-], [class^=dpl-], .mobile-hidden {
+                display: none!important;
+            }
+        }
+    </style>
+    <style>INPUT:-webkit-autofill,SELECT:-webkit-autofill,TEXTAREA:-webkit-autofill{animation-name:onautofillstart}INPUT:not(:-webkit-autofill),SELECT:not(:-webkit-autofill),TEXTAREA:not(:-webkit-autofill){animation-name:onautofillcancel}@keyframes onautofillstart{}@keyframes onautofillcancel{}</style><meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AymqwRC7u88Y4JPvfIF2F37QKylC04248hLCdJAsh8xgOfe/dVJPV3XS3wLFca1ZMVOtnBfVjaCMTVudWM//5g4AAAB7eyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGV0YWdtYW5hZ2VyLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><script type="text/javascript" async="" src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/979879318/?random=1687801132650&amp;cv=11&amp;fst=1687801132650&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;gtm=45He36l0&amp;u_w=1536&amp;u_h=864&amp;url=https%3A%2F%2Fmdbootstrap.com%2Fdocs%2Fstandard%2Fextended%2Flogin%2F&amp;ref=https%3A%2F%2Fyandex.by%2F&amp;label=uIBJCPv423AQlouf0wM&amp;hn=www.googleadservices.com&amp;frm=0&amp;tiba=Bootstrap%20Login%20Form%20-%20free%20examples%2C%20templates%20%26%20tutorial&amp;auid=1318572711.1686746281&amp;uaa=x86&amp;uab=64&amp;uafvl=Not.A%252FBrand%3B8.0.0.0%7CChromium%3B114.0.5735.134%7CMicrosoft%2520Edge%3B114.0.1823.58&amp;uamb=0&amp;uap=Windows&amp;uapv=10.0.0&amp;uaw=0&amp;rfmt=3&amp;fmt=4"></script></head>
+<body>
+<div class="bg-white border rounded-5">
 
-                        <div class="form-outline form-white mb-4">
-                            <input type="text" id="typeFirstnameX" class="form-control form-control-lg">
-                            <label class="form-label" for="typeFirstnameX" style="margin-left: 0px;">First Name</label>
+    <section class="w-100 p-4 d-flex justify-content-center pb-4">
+        <div style="width: 26rem;">
+            <!-- Pills navs -->
+            <h3 align="center">Sign Up now!</h3>
+            <!-- Pills content -->
+            <div class="tab-content">
+                <div class="tab-pane fade" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+                    <form>
+                        <div class="text-center mb-3">
+                            <p>Sign in with:</p>
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                                <i class="fab fa-google"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                                <i class="fab fa-github"></i>
+                            </button>
+                        </div>
+
+                        <p class="text-center">or:</p>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="email" id="loginName" class="form-control">
+                            <label class="form-label" for="loginName" style="margin-left: 0px;">Email or username</label>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 114.4px;"></div><div class="form-notch-trailing"></div></div></div>
+
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <input type="password" id="loginPassword" class="form-control">
+                            <label class="form-label" for="loginPassword" style="margin-left: 0px;">Password</label>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 64.8px;"></div><div class="form-notch-trailing"></div></div></div>
+
+                        <!-- 2 column grid layout -->
+                        <div class="row mb-4">
+                            <div class="col-md-6 d-flex justify-content-center">
+                                <!-- Checkbox -->
+                                <div class="form-check mb-3 mb-md-0">
+                                    <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked="">
+                                    <label class="form-check-label" for="loginCheck"> Remember me </label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 d-flex justify-content-center">
+                                <!-- Simple link -->
+                                <a href="#!">Forgot password?</a>
+                            </div>
+                        </div>
+
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+
+                        <!-- Register buttons -->
+                        <div class="text-center">
+                            <p>Not a member? <a href="#!">Register</a></p>
+                        </div>
+                    </form>
+                </div>
+                <div class="tab-pane fade active show" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+                    <form>
+                        <div class="text-center mb-3">
+                            <p>Sign up with:</p>
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                                <i class="fab fa-facebook-f"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                                <i class="fab fa-google"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                                <i class="fab fa-twitter"></i>
+                            </button>
+
+                            <button type="button" class="btn btn-link btn-floating mx-1">
+                                <i class="fab fa-github"></i>
+                            </button>
+                        </div>
+
+                        <p class="text-center">or:</p>
+
+                        <!-- Name input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="registerName" class="form-control">
+                            <label class="form-label" for="registerName" style="margin-left: 0px;">Name</label>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 42.4px;"></div><div class="form-notch-trailing"></div></div></div>
+
+                        <!-- Username input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="registerUsername" class="form-control">
+                            <label class="form-label" for="registerUsername" style="margin-left: 0px;">Username</label>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 66.4px;"></div><div class="form-notch-trailing"></div></div></div>
+
+                        <!-- Email input -->
+                        <div class="form-outline mb-4">
+                            <input type="email" id="registerEmail" class="form-control">
+                            <label class="form-label" for="registerEmail" style="margin-left: 0px;">Email</label>
                             <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 40px;"></div><div class="form-notch-trailing"></div></div></div>
 
-                        <div class="form-outline form-white mb-4">
-                            <input type="text" id="typeLastnameX" class="form-control form-control-lg">
-                            <label class="form-label" for="typeLastnameX" style="margin-left: 0px;">Last Name</label>
-                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 40px;"></div><div class="form-notch-trailing"></div></div></div>
+                        <!-- Password input -->
+                        <div class="form-outline mb-4">
+                            <input type="password" id="registerPassword" class="form-control">
+                            <label class="form-label" for="registerPassword" style="margin-left: 0px;">Password</label>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 64.8px;"></div><div class="form-notch-trailing"></div></div></div>
 
-                        <div class="form-outline form-white mb-4">
-                            <input type="date" id="typeBirthDateX" placeholder="Birthday" class="form-control form-control-lg">
-                            <label class="form-label" for="typeBirthDateX" style="margin-left: 0px;">Birthday</label>
-                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 40px;"></div><div class="form-notch-trailing"></div></div></div>
+                        <!-- Repeat Password input -->
+                        <div class="form-outline mb-4">
+                            <input type="password" id="registerRepeatPassword" class="form-control">
+                            <label class="form-label" for="registerRepeatPassword" style="margin-left: 0px;">Repeat password</label>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 106.4px;"></div><div class="form-notch-trailing"></div></div></div>
 
-                        <label for="image">Image:
-                            <input id="image" type="file" name="image">
-                        </label><br>
-
-                        <div class="form-outline form-white mb-4">
-                            <label class="radio-container m-r-45">Male
-                                <input type="radio" checked="checked" name="gender">
-                                <span class="checkmark"></span>
-                            </label>
-                            <label class="radio-container">Female
-                                <input type="radio" name="gender">
-                                <span class="checkmark"></span>
+                        <!-- Checkbox -->
+                        <div class="form-check d-flex justify-content-center mb-4">
+                            <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked="" aria-describedby="registerCheckHelpText">
+                            <label class="form-check-label" for="registerCheck">
+                                I have read and agree to the terms
                             </label>
                         </div>
 
-                        <div class="form-outline form-white mb-4">
-                            <input type="email" id="typeEmailX" class="form-control form-control-lg">
-                            <label class="form-label" for="typeEmailX" style="margin-left: 0px;">Email</label>
-                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 40px;"></div><div class="form-notch-trailing"></div></div></div>
-
-                        <div class="form-outline form-white mb-4">
-                            <input type="password" id="typePassword1X" class="form-control form-control-lg">
-                            <label class="form-label" for="typePassword1X" style="margin-left: 0px;">Password</label>
-                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 64.8px;"></div><div class="form-notch-trailing"></div></div></div>
-
-                        <div class="form-outline form-white mb-4">
-                            <input type="password" id="typePassword2X" class="form-control form-control-lg">
-                            <label class="form-label" for="typePassword2X" style="margin-left: 0px;">Repeat your Password</label>
-                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 64.8px;"></div><div class="form-notch-trailing"></div></div></div>
-
-                        <button class="btn btn-outline-light btn-lg px-5" type="submit">Sign Up</button>
-
-                    </div>
-
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+                    </form>
                 </div>
             </div>
+            <!-- Pills content -->
         </div>
-    </div>
-</section>
+    </section>
+
+
+
+</div>
 </body>
 </html>
