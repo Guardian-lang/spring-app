@@ -32,17 +32,17 @@ public class AuthorService implements by.ahmed.springapp.service.Service<AuthorR
     private final LoginAuthorValidator loginAuthorValidator;
 
     public Optional<AuthorReadDto> login(String login, String password) {
-        Optional<AuthorReadDto> userDto = authorRepository.findAll()
+        Optional<AuthorReadDto> authorDto = authorRepository.findAll()
                 .stream()
                 .filter(it -> it.getAuthentication().getEmail()
                         .equals(login)
                         && it.getAuthentication().getPassword().equals(password))
                 .map(authorMapper::toDto).findFirst();
-        var validationResult = loginAuthorValidator.isValid(userDto);
+        var validationResult = loginAuthorValidator.isValid(authorDto);
         if (!validationResult.isValid()) {
             throw new ValidationException(validationResult.getErrors());
         }
-        return userDto;
+        return authorDto;
     }
 
     public List<AuthorReadDto> findAll() {
