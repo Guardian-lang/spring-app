@@ -7,9 +7,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
+
+    @Query("select com from Comment com " +
+            "where com.id = :id")
+    Optional<Comment> findById(@Param("id") Long id);
 
     @Query("select com from Comment com " +
             "left join User u " +

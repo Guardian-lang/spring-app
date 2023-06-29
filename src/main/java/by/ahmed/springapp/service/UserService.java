@@ -73,7 +73,7 @@ public class UserService implements by.ahmed.springapp.service.Service<UserReadD
     @SneakyThrows
     private void uploadImage(MultipartFile image) {
         if(!image.isEmpty()) {
-            imageService.upload(image.getOriginalFilename(), image.getInputStream());
+            imageService.upload(image);
         }
     }
 

@@ -20,8 +20,9 @@ public class Article {
     private String title, announce, full_text;
     private LocalDate date;
     private Integer views;
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "author_id")
+    private User author;
     @OneToMany(fetch = FetchType.LAZY)
     private List<Comment> comments;
 }

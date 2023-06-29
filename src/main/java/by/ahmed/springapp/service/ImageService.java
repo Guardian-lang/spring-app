@@ -1,20 +1,24 @@
 package by.ahmed.springapp.service;
 
+import by.ahmed.springapp.entity.Image;
+import by.ahmed.springapp.repository.ImageRepository;
+import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.util.Optional;
 
-@Component
+@Service
+@RequiredArgsConstructor
 public class ImageService {
 
     @Value("${app.image.bucket}")
     private String bucket;
+    private final ImageRepository imageRepository;
 
 //    @Autowired
 //    public void setBucket(@Value("${app.image.backet}")
@@ -23,15 +27,13 @@ public class ImageService {
 //    }
 
     @SneakyThrows
-    public void upload(String imagePath, InputStream content) {
-        Path fullImagePath = Path.of(bucket, imagePath);
+    Long upload(MultipartFile multipartImage) throws Exception {
+        Image image = new Image();
+        image.setName(multipartImage.getName());
+        image.setContent(multipartImage.getBytes());
 
-        try (content) {
-            Files.createDirectories(fullImagePath.getParent());
-            Files.write(fullImagePath, content.readAllBytes(),
-                    StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
-        }
-
+        return imageRepository.save(image)
+                .getId();
     }
 
 

@@ -1,6 +1,7 @@
 package by.ahmed.springapp.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -18,6 +19,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
+    @OneToOne(mappedBy = "user",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY)
+    private Image avatar;
     private String first_name;
     private String last_name;
     private LocalDate birth_date;
@@ -26,8 +31,10 @@ public class User {
     private String job_title;
     @Embedded
     private Authentication authentication;
-    @OneToMany(fetch = FetchType.LAZY)
+    @Builder.Default
+    @OneToMany(mappedBy = "user")
     private List<Article> articles;
-    @OneToMany(fetch = FetchType.LAZY)
+    @Builder.Default
+    @OneToMany(mappedBy = "user")
     private List<Comment> comments;
 }
