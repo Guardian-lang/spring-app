@@ -6,7 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -18,10 +18,10 @@ public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title, announce, full_text;
-    private Date date;
+    private LocalDate date;
     private Integer views;
     @ManyToOne(fetch = FetchType.LAZY)
-    private Author author;
+    private User user;
     @OneToMany(fetch = FetchType.LAZY)
-    private List<Comments> comments;
+    private List<Comment> comments;
 }

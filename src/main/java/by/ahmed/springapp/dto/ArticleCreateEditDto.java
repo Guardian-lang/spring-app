@@ -1,9 +1,9 @@
 package by.ahmed.springapp.dto;
 
-import by.ahmed.springapp.entity.Author;
+import by.ahmed.springapp.entity.User;
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -15,6 +15,6 @@ public class ArticleCreateEditDto {
     String title;
     String announce;
     String fullText;
-    Date date;
-    Author author;
+    LocalDate date;
+    User user;
 }

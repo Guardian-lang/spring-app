@@ -1,7 +1,9 @@
 package by.ahmed.springapp.http.controller;
 
-import by.ahmed.springapp.dto.AuthorCreateEditDto;
-import by.ahmed.springapp.service.AuthorService;
+import by.ahmed.springapp.dto.UserCreateEditDto;
+import by.ahmed.springapp.entity.Gender;
+import by.ahmed.springapp.entity.Role;
+import by.ahmed.springapp.service.UserService;
 import by.ahmed.springapp.validator.ValidationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,11 +19,11 @@ import static by.ahmed.springapp.util.ModelHelper.addAttributes;
 
 @Controller
 @RequiredArgsConstructor
-@SessionAttributes({"authorDto", "errors"})
+@SessionAttributes({"user", "genders", "roles", "errors"})
 @Slf4j
 public class RegistrationController {
 
-    private final AuthorService authorService;
+    private final UserService userService;
 
 //    @GetMapping("/registration")
 //    public String registration() {
@@ -29,26 +31,28 @@ public class RegistrationController {
 //    }
 
     @PostMapping("/registration")
-    public String registration(Model model, AuthorCreateEditDto createAuthorDto,
+    public String registration(Model model, UserCreateEditDto createUserDto,
                                RedirectAttributes redirectAttributes) {
         try {
-            var userDto = authorService.create(createAuthorDto);
-            addAttributes(model, Map.of("authorDto", userDto));
+            var userDto = userService.create(createUserDto);
+            addAttributes(model, Map.of("user", userDto));
+            addAttributes(model, Map.of("genders", Gender.values()));
+            addAttributes(model, Map.of("roles", Role.values()));
             return "redirect:/login";
         } catch (ValidationException exception) {
             addAttributes(model, Map.of("errors", exception.getErrors()));
-            redirectAtt(createAuthorDto, redirectAttributes);
+            redirectAtt(createUserDto, redirectAttributes);
             return "redirect:/registration";
         }
     }
 
-    private void redirectAtt(AuthorCreateEditDto createAuthorDto, RedirectAttributes redirectAttributes) {
-        redirectAttributes.addFlashAttribute("firstname", createAuthorDto.getFirst_name());
-        redirectAttributes.addFlashAttribute("lastname", createAuthorDto.getLast_name());
-        redirectAttributes.addFlashAttribute("birthDate", createAuthorDto.getBirth_date());
-        redirectAttributes.addFlashAttribute("gender", createAuthorDto.getGender());
-        redirectAttributes.addFlashAttribute("jobTitle", createAuthorDto.getJob_title());
-        redirectAttributes.addFlashAttribute("email", createAuthorDto.getAuthentication().getEmail());
-        redirectAttributes.addFlashAttribute("password", createAuthorDto.getAuthentication().getPassword());
+    private void redirectAtt(UserCreateEditDto createUserDto, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addFlashAttribute("first_name", createUserDto.getFirst_name());
+        redirectAttributes.addFlashAttribute("last_name", createUserDto.getLast_name());
+        redirectAttributes.addFlashAttribute("birth_date", createUserDto.getBirth_date());
+        redirectAttributes.addFlashAttribute("gender", createUserDto.getGender());
+        redirectAttributes.addFlashAttribute("role", createUserDto.getAuthentication().getRole());
+        redirectAttributes.addFlashAttribute("email", createUserDto.getAuthentication().getEmail());
+        redirectAttributes.addFlashAttribute("password", createUserDto.getAuthentication().getPassword());
     }
 }

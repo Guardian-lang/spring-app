@@ -1,7 +1,8 @@
 package by.ahmed.springapp.http.controller;
 
-import by.ahmed.springapp.dto.AuthorReadDto;
-import by.ahmed.springapp.service.AuthorService;
+import by.ahmed.springapp.dto.UserReadDto;
+import by.ahmed.springapp.mapper.UserDtoConverter;
+import by.ahmed.springapp.service.UserService;
 import by.ahmed.springapp.util.ModelHelper;
 import by.ahmed.springapp.validator.ValidationException;
 import lombok.RequiredArgsConstructor;
@@ -21,10 +22,10 @@ import static by.ahmed.springapp.util.ModelHelper.addAttributes;
 @Controller
 @Slf4j
 @RequiredArgsConstructor
-@SessionAttributes({"authorDto", "errors"})
+@SessionAttributes({"userCreateEditDto", "errors"})
 public class LoginController {
 
-    private final AuthorService authorService;
+    private final UserService userService;
 
 //    @GetMapping("/login")
 //    public String loginPage() {
@@ -35,8 +36,8 @@ public class LoginController {
     public String validate(Model model, String email,
                            String password, RedirectAttributes redirectAttributes) {
         try {
-            var author = authorService.login(email, password);
-            return author.map(authorDto -> onLoginSuccess(model, authorDto)).orElse(loginFail());
+            var user = userService.login(email, password);
+            return user.map(userReadDto -> onLoginSuccess(model, userReadDto)).orElse(loginFail());
         } catch (ValidationException e) {
             addAttributes(model, Map.of("errors", e.getErrors()));
             ModelHelper.redirectAttributes(redirectAttributes, Map.of("email", email,
@@ -54,9 +55,9 @@ public class LoginController {
 
     @SneakyThrows
     private String onLoginSuccess(Model model,
-                                  AuthorReadDto author) {
-        log.info("Author logged: {}", author);
-        addAttributes(model, Map.of("authorDto", author));
+                                  UserReadDto user) {
+        log.info("User logged: {}", user);
+        addAttributes(model, Map.of("authorDto", user));
         return "redirect:/users/menu";
     }
 }

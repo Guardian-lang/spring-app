@@ -6,13 +6,13 @@ import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Getter
 @Setter
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "Comments")
-public class Comments {
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "Comment")
+public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -20,6 +20,6 @@ public class Comments {
     private User user;
     @ManyToOne(fetch = FetchType.LAZY)
     private Article article;
-    private Date date;
+    private LocalDate date;
     private String text;
 }

@@ -1,6 +1,6 @@
 package by.ahmed.springapp.validator.annotation.constraintClass;
 
-import by.ahmed.springapp.dto.AuthorCreateEditDto;
+import by.ahmed.springapp.dto.UserCreateEditDto;
 import by.ahmed.springapp.validator.annotation.Adult;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDate;
 
 @Component
-public class AdultValidator implements ConstraintValidator<Adult, AuthorCreateEditDto> {
+public class AdultValidator implements ConstraintValidator<Adult, UserCreateEditDto> {
     @Override
-    public boolean isValid(AuthorCreateEditDto value, ConstraintValidatorContext constraintValidatorContext) {
+    public boolean isValid(UserCreateEditDto value, ConstraintValidatorContext constraintValidatorContext) {
         int validValueYear = LocalDate.now().getYear() - value.getBirth_date().getYear();
-        int validValueMonth = LocalDate.now().getMonthValue() - value.getBirth_date().getMonth();
-        int validValueDay = LocalDate.now().getDayOfMonth() - value.getBirth_date().getDay();
+        int validValueMonth = LocalDate.now().getMonthValue() - value.getBirth_date().getMonthValue();
+        int validValueDay = LocalDate.now().getDayOfMonth() - value.getBirth_date().getDayOfMonth();
         if (validValueYear < 18) {
             return false;
         }

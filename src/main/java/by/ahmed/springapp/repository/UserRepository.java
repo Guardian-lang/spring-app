@@ -1,6 +1,5 @@
 package by.ahmed.springapp.repository;
 
-import by.ahmed.springapp.entity.Admin;
 import by.ahmed.springapp.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

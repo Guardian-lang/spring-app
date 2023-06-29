@@ -1,6 +1,5 @@
 package by.ahmed.springapp.util;
 
-import by.ahmed.springapp.filter.AuthorFilter;
 import lombok.experimental.UtilityClass;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;

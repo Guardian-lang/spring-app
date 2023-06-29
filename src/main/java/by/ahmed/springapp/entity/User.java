@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -17,8 +18,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
+    private String first_name;
+    private String last_name;
+    private LocalDate birth_date;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+    private String job_title;
     @Embedded
-    private UserAuthentication authentication;
+    private Authentication authentication;
     @OneToMany(fetch = FetchType.LAZY)
-    private List<Comments> comments;
+    private List<Article> articles;
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Comment> comments;
 }

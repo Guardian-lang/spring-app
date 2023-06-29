@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     @Query("select a from Article a " +
             "where a.date between :date1 and :date2")
-    List<Article> sortByDate(@Param("date1") Date date1, @Param("date2") Date date2);
+    List<Article> sortByDate(@Param("date1") LocalDate date1, @Param("date2") LocalDate date2);
 
     @Query("select a from Article a " +
             "where a.id = :id")

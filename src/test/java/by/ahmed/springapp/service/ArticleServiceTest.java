@@ -3,13 +3,10 @@ package by.ahmed.springapp.service;
 import by.ahmed.springapp.annotation.IntegrationTesting;
 import by.ahmed.springapp.dto.ArticleCreateEditDto;
 import by.ahmed.springapp.dto.ArticleReadDto;
-import by.ahmed.springapp.mapper.ArticleDtoConverter;
-import by.ahmed.springapp.mapper.ArticleListMapper;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Optional;
 
 
@@ -38,7 +35,7 @@ public class ArticleServiceTest {
     @Test
     public void createTest() {
         var expectedResult = buildDto("Название", "Анонс", "Текст",
-                Calendar.getInstance().getTime());
+                LocalDate.now());
         var actualResult = articleService.create(expectedResult);
 
         assertEquals(expectedResult.getTitle(), actualResult.getTitle());
@@ -50,7 +47,7 @@ public class ArticleServiceTest {
     @Test
     public void updateTest() {
         ArticleCreateEditDto articleDto = buildDto("Название1", "Анонс1", "Текст1",
-                new Date(2019, Calendar.JANUARY, 1));
+                LocalDate.of(2019, 1, 1));
         Optional<ArticleReadDto> actualResult = articleService.update(ARTICLE_ID, articleDto);
         assertTrue(actualResult.isPresent());
         actualResult.ifPresent(article -> {
@@ -70,7 +67,7 @@ public class ArticleServiceTest {
     private ArticleCreateEditDto buildDto(String title,
                                           String announce,
                                           String fullText,
-                                          Date date) {
+                                          LocalDate date) {
         return ArticleCreateEditDto.builder()
                 .title(title)
                 .announce(announce)

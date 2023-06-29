@@ -3,9 +3,7 @@
         xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
         xmlns:ehcache='http://www.ehcache.org/v3'
         xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.1.xsd">
-    <ehcache:cache alias="Admin" uses-template="simple"/>
     <ehcache:cache alias="Article" uses-template="simple"/>
-    <ehcache:cache alias="Author" uses-template="simple"/>
     <ehcache:cache alias="Comments" uses-template="simple"/>
     <ehcache:cache alias="User" uses-template="simple"/>
     <ehcache:cache-template name="simple">

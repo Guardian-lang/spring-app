@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 
     <meta charset="utf-8">
@@ -20,7 +21,7 @@
 
 
     <meta charset="utf-8">
-    <title>Bootstrap Login Form - free examples, templates &amp; tutorial</title>
+    <title>Sign Up</title>
 
     <meta name="description" content="Responsive login form built with Bootstrap 5. Collection of examples for signup forms, full page login templates, login modals &amp; many other sign in designs.">
     <meta name="image" content="https://mdbcdn.b-cdn.net/docs/standard/extended/login/assets/featured.jpg">
@@ -189,27 +190,7 @@
             <!-- Pills content -->
             <div class="tab-content">
                 <div class="tab-pane fade" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                    <form>
-                        <div class="text-center mb-3">
-                            <p>Sign in with:</p>
-                            <button type="button" class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-facebook-f"></i>
-                            </button>
-
-                            <button type="button" class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-google"></i>
-                            </button>
-
-                            <button type="button" class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-twitter"></i>
-                            </button>
-
-                            <button type="button" class="btn btn-link btn-floating mx-1">
-                                <i class="fab fa-github"></i>
-                            </button>
-                        </div>
-
-                        <p class="text-center">or:</p>
+                    <form th:action="/registration" method="post">
 
                         <!-- Email input -->
                         <div class="form-outline mb-4">
@@ -271,17 +252,41 @@
 
                         <p class="text-center">or:</p>
 
-                        <!-- Name input -->
-                        <div class="form-outline mb-4">
-                            <input type="text" id="registerName" class="form-control">
-                            <label class="form-label" for="registerName" style="margin-left: 0px;">Name</label>
-                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 42.4px;"></div><div class="form-notch-trailing"></div></div></div>
-
                         <!-- Username input -->
                         <div class="form-outline mb-4">
                             <input type="text" id="registerUsername" class="form-control">
                             <label class="form-label" for="registerUsername" style="margin-left: 0px;">Username</label>
                             <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 66.4px;"></div><div class="form-notch-trailing"></div></div></div>
+
+                        <!-- First Name input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="first_name" class="form-control">
+                            <label class="form-label" for="first_name" style="margin-left: 0px;">First Name</label>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 42.4px;"></div><div class="form-notch-trailing"></div></div></div>
+
+                        <!-- Last Name input -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="last_name" class="form-control">
+                            <label class="form-label" for="last_name" style="margin-left: 0px;">Last Name</label>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 42.4px;"></div><div class="form-notch-trailing"></div></div></div>
+
+                        <!-- Birth Date input -->
+                        <div class="form-outline mb-4">
+                            <input type="date" id="birth_date" class="form-control">
+                            <label class="form-label" for="birth_date" style="margin-left: 0px;">Birth Date</label>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 42.4px;"></div><div class="form-notch-trailing"></div></div></div>
+
+                        <!-- Gender input -->
+                        <div th:each="gender : ${genders}" class="form-outline mb-4">
+                            <input th:id="${gender}" type="radio" id="gender" th:value="${gender}" th:checked="${gender == user.gender}" class="form-control">
+                            <label class="form-label" for="gender" style="margin-left: 0px;">Gender</label>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 42.4px;"></div><div class="form-notch-trailing"></div></div></div>
+
+                        <!-- Role input -->
+                        <div th:each="role : ${roles}" class="form-outline mb-4">
+                            <input th:id="${role}" type="radio" id="role" th:value="${role}" th:checked="${role == user.role}" class="form-control">
+                            <label class="form-label" for="role" style="margin-left: 0px;">Role</label>
+                            <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 42.4px;"></div><div class="form-notch-trailing"></div></div></div>
 
                         <!-- Email input -->
                         <div class="form-outline mb-4">
@@ -310,7 +315,7 @@
                         </div>
 
                         <!-- Submit button -->
-                        <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+                        <button type="submit" class="btn btn-primary btn-block mb-3">Sign up</button>
                     </form>
                 </div>
             </div>

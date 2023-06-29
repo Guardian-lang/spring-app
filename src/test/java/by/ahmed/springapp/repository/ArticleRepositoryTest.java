@@ -7,9 +7,8 @@ import by.ahmed.springapp.mapper.ArticleMapper;
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -26,7 +25,7 @@ public class ArticleRepositoryTest {
     public void findByTitleTest() {
         var expectedValue = buildArticle("Название",
                 "Анонс",
-                "Текст", Calendar.getInstance().getTime());
+                "Текст", LocalDate.now());
         articleRepository.save(expectedValue);
         Article actualValue = articleRepository.findByTitle("Название");
         assertEquals(expectedValue, actualValue);
@@ -38,16 +37,16 @@ public class ArticleRepositoryTest {
         List<Article> expectedArticleList = new ArrayList<>();
         var article1 = buildArticle("Название1",
                 "Анонс1",
-                "Текст1", new Date(2019, Calendar.JANUARY, 1));
+                "Текст1", LocalDate.of(2019, 1, 1));
         articleRepository.save(article1);
         expectedArticleList.add(article1);
         var article2 = buildArticle("Название2",
                 "Анонс2",
-                "Текст2", new Date(2022, Calendar.JANUARY, 1));
+                "Текст2", LocalDate.of(2022, 1, 1));
         articleRepository.save(article2);
         expectedArticleList.add(article1);
-        List<Article> actualArticleList = articleRepository.sortByDate(new Date(2018, Calendar.JANUARY, 1),
-                new Date(2023, Calendar.JANUARY, 1));
+        List<Article> actualArticleList = articleRepository.sortByDate(LocalDate.of(2018, 1, 1),
+                LocalDate.of(2023, 1, 1));
         assertEquals(expectedArticleList, actualArticleList);
         articleRepository.delete(article1);
         articleRepository.delete(article2);
@@ -64,7 +63,7 @@ public class ArticleRepositoryTest {
 //
 //    }
 
-    private Article buildArticle(String title, String announce, String fullText, Date date) {
+    private Article buildArticle(String title, String announce, String fullText, LocalDate date) {
         return articleMapper.toArticle(ArticleCreateEditDto.builder()
                 .title(title)
                 .announce(announce)

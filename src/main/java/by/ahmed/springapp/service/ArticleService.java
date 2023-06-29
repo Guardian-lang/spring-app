@@ -3,7 +3,6 @@ package by.ahmed.springapp.service;
 import by.ahmed.springapp.dto.ArticleCreateEditDto;
 import by.ahmed.springapp.dto.ArticleReadDto;
 import by.ahmed.springapp.entity.Article;
-import by.ahmed.springapp.mapper.ArticleDtoConverter;
 import by.ahmed.springapp.mapper.ArticleListMapper;
 import by.ahmed.springapp.mapper.ArticleMapper;
 import by.ahmed.springapp.mapper.ArticleUpdateMapper;

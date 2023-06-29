@@ -1,6 +1,6 @@
 package by.ahmed.springapp.validator.annotation;
 
-import by.ahmed.springapp.validator.annotation.constraintClass.AuthorInfoValidator;
+import by.ahmed.springapp.validator.annotation.constraintClass.UserInfoValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -9,10 +9,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = AuthorInfoValidator.class)
+@Constraint(validatedBy = UserInfoValidator.class)
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface AuthorInfo {
+public @interface UserInfo {
     String message() default "Firstname or lastname should be filled in";
 
     Class<?>[] groups() default { };

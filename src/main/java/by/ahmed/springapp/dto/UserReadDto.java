@@ -2,23 +2,23 @@ package by.ahmed.springapp.dto;
 
 import by.ahmed.springapp.entity.Article;
 import by.ahmed.springapp.entity.Authentication;
-import lombok.*;
+import by.ahmed.springapp.entity.Comment;
+import by.ahmed.springapp.entity.Gender;
+import lombok.Value;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-public class AuthorReadDto {
+@Value
+public class UserReadDto {
     Long id;
+    String username;
     String first_name;
     String last_name;
+    LocalDate birth_date;
+    Gender gender;
     String job_title;
-    String avatar;
-    Date birth_date;
-    String gender;
     Authentication authentication;
+    List<Comment> comments;
     List<Article> articles;
 }

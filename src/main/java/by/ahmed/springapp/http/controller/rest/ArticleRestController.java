@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/article")
@@ -38,7 +38,7 @@ public class ArticleRestController {
                 .title(title)
                 .announce(announce)
                 .fullText(fullText)
-                .date(Calendar.getInstance().getTime())
+                .date(LocalDate.now())
                 .build();
         return articleService.create(article);
     }

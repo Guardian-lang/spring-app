@@ -2,6 +2,7 @@ package by.ahmed.springapp.dto;
 
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -14,7 +15,6 @@ public class ArticleReadDto {
     String title;
     String announce;
     String fullText;
-    Date date;
+    LocalDate date;
     Integer views;
-    Long authorId;
 }

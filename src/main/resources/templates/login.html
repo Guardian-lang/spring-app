@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 
     <meta charset="utf-8">
@@ -20,7 +21,7 @@
 
 
     <meta charset="utf-8">
-    <title>Bootstrap Login Form - free examples, templates &amp; tutorial</title>
+    <title>Sign In</title>
 
     <meta name="description" content="Responsive login form built with Bootstrap 5. Collection of examples for signup forms, full page login templates, login modals &amp; many other sign in designs.">
     <meta name="image" content="https://mdbcdn.b-cdn.net/docs/standard/extended/login/assets/featured.jpg">
@@ -189,7 +190,7 @@
             <!-- Pills content -->
             <div class="tab-content">
                 <div class="tab-pane fade active show" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                    <form>
+                    <form th:action="/login" method="post">
                         <div class="text-center mb-3">
                             <p>Sign in with:</p>
                             <button type="button" class="btn btn-link btn-floating mx-1">
@@ -213,14 +214,14 @@
 
                         <!-- Email input -->
                         <div class="form-outline mb-4">
-                            <input type="email" id="loginName" class="form-control">
-                            <label class="form-label" for="loginName" style="margin-left: 0px;">Email or username</label>
+                            <input type="email" id="email" class="form-control">
+                            <label class="form-label" for="email" style="margin-left: 0px;">Email</label>
                             <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 114.4px;"></div><div class="form-notch-trailing"></div></div></div>
 
                         <!-- Password input -->
                         <div class="form-outline mb-4">
-                            <input type="password" id="loginPassword" class="form-control">
-                            <label class="form-label" for="loginPassword" style="margin-left: 0px;">Password</label>
+                            <input type="password" id="password" class="form-control">
+                            <label class="form-label" for="password" style="margin-left: 0px;">Password</label>
                             <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 64.8px;"></div><div class="form-notch-trailing"></div></div></div>
 
                         <!-- 2 column grid layout -->
@@ -244,7 +245,7 @@
 
                         <!-- Register buttons -->
                         <div class="text-center">
-                            <p>Not a member? <a href="#!">Register</a></p>
+                            <p>Not a member? <a href="/registration">Register</a></p>
                         </div>
                     </form>
                 </div>
