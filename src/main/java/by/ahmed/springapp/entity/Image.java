@@ -2,13 +2,14 @@ package by.ahmed.springapp.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "Comment")
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

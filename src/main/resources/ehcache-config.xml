@@ -4,7 +4,8 @@
         xmlns:ehcache='http://www.ehcache.org/v3'
         xsi:schemaLocation="http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.1.xsd">
     <ehcache:cache alias="Article" uses-template="simple"/>
-    <ehcache:cache alias="Comments" uses-template="simple"/>
+    <ehcache:cache alias="Comment" uses-template="simple"/>
+    <ehcache:cache alias="Image" uses-template="simple"/>
     <ehcache:cache alias="User" uses-template="simple"/>
     <ehcache:cache-template name="simple">
         <ehcache:expiry>
