@@ -1,6 +1,8 @@
 package by.ahmed.springapp.repository;
 
 import by.ahmed.springapp.entity.Article;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -26,5 +28,5 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
             "where a.id = :id")
     Optional<Article> findById(@Param("id") Long id);
 
-//    Page<Article> findFirstNArticles(Pageable pageable, Integer n);
+    Page<Article> findFirstNArticles(Pageable pageable, Integer n);
 }

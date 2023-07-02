@@ -3,9 +3,9 @@ package by.ahmed.springapp.entity;
 import by.ahmed.springapp.validator.annotation.Password;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
-import org.springframework.security.core.GrantedAuthority;
 
 @Embeddable
 @Getter
@@ -13,6 +13,7 @@ import org.springframework.security.core.GrantedAuthority;
 @FieldNameConstants
 @NoArgsConstructor
 @AllArgsConstructor
+@NotNull
 public class Authentication {
     @OneToOne(fetch = FetchType.LAZY)
     private User user;

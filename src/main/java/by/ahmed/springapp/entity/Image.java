@@ -5,19 +5,21 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Getter
 @Setter
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "Comment")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE, region = "Image")
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     @Lob
-    byte[] content;
-    String name;
+    private MultipartFile content;
+    private String name, path;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
     private User user;
+    @ManyToOne(optional = false)
+    private Article article;
 }

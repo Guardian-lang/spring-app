@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 public interface UserUpdateMapper {
     default User map(UserCreateEditDto userCreateEditDto, User user) {
         user.setUsername(userCreateEditDto.getUsername());
+        user.setAvatar(userCreateEditDto.getAvatar());
         user.setFirst_name(userCreateEditDto.getFirst_name());
         user.setLast_name(userCreateEditDto.getLast_name());
         user.setBirth_date(userCreateEditDto.getBirth_date());

@@ -22,7 +22,7 @@ import static by.ahmed.springapp.util.ModelHelper.addAttributes;
 @Controller
 @Slf4j
 @RequiredArgsConstructor
-@SessionAttributes({"userCreateEditDto", "errors"})
+@SessionAttributes({"userDto", "errors"})
 public class LoginController {
 
     private final UserService userService;

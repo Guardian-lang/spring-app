@@ -1,6 +1,7 @@
 package by.ahmed.springapp.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,17 +19,24 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     private String username;
     @OneToOne(mappedBy = "user",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private Image avatar;
+    @NotNull
     private String first_name;
+    @NotNull
     private String last_name;
+    @NotNull
     private LocalDate birth_date;
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Gender gender;
+    @NotNull
     private String job_title;
+    @NotNull
     @Embedded
     private Authentication authentication;
     @Builder.Default

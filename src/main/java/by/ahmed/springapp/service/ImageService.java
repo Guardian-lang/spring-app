@@ -30,7 +30,7 @@ public class ImageService {
     Long upload(MultipartFile multipartImage) throws Exception {
         Image image = new Image();
         image.setName(multipartImage.getName());
-        image.setContent(multipartImage.getBytes());
+        image.setContent(multipartImage);
 
         return imageRepository.save(image)
                 .getId();

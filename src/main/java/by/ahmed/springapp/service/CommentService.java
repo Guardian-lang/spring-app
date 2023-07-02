@@ -3,6 +3,7 @@ package by.ahmed.springapp.service;
 
 import by.ahmed.springapp.dto.CommentCreateEditDto;
 import by.ahmed.springapp.dto.CommentReadDto;
+import by.ahmed.springapp.dto.UserReadDto;
 import by.ahmed.springapp.entity.Comment;
 import by.ahmed.springapp.mapper.CommentListMapper;
 import by.ahmed.springapp.mapper.CommentMapper;
